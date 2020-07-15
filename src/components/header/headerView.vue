@@ -11,7 +11,7 @@
                         <div class="user-info">
                             <div class="user-name">
                                 <span class="hi">你好,</span>
-                                <span class="name">admin</span>
+                                <span class="name">{{getUserName}}</span>
                             </div>
                             <div class="avatar">
                                 <img src="https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJg0W7IVzQ5gPbLouuoeI4VTEFRXKNFJIVFx4SWTWwL5affdJ2s2ShKIxRJIUDVRKiahZD6emQqq4A/132" />
@@ -27,11 +27,18 @@
 </template>
 
 <script>
+  import { getStorage } from '../../tools/common'
   export default {
     name: "headerView",
     data () {
       return {
 
+      }
+    },
+    computed : {
+      getUserName () {
+        let userInfo = JSON.parse(getStorage('login') || '{}')
+        return userInfo.username || ''
       }
     },
     methods : {
