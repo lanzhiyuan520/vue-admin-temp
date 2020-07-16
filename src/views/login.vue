@@ -30,13 +30,14 @@
                         <el-input prefix-icon="iconfont icon-pass" v-model="loginForm.password" type="password" placeholder="密码"></el-input>
                     </el-form-item>
                     <el-form-item>
-                        <button class="clear-btn-style login-btn" @click="login">登录</button>
+                        <div class="login-btn" @click="login">登录</div>
                     </el-form-item>
                     <el-form-item>
                         <div class="tip-text">用户名随意，密码：123456</div>
                     </el-form-item>
                 </el-form>
             </div>
+            <!--<button class="clear-btn-style login-btn" @click="login">登录</button>-->
         </div>
     </div>
 </template>
@@ -78,9 +79,7 @@
               localStorage.setItem('login',loginInfo)
               this.$message.success('登录成功')
               setTimeout(() => {
-                this.$router.replace({
-                  path : '/'
-                })
+                this.$router.replace('/')
               },1000)
             }
           }
@@ -121,6 +120,7 @@
                 color: #fff;
                 font-size: 16px;
                 cursor: pointer;
+                text-align: center;
             }
             .login-btn:active {
                 background-color: #16a085;

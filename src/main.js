@@ -7,12 +7,16 @@ import request from './tools/request'
 import mixin from './mixin'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
+import eventBus from './tools/eventBus'
+import echarts from 'echarts'
 
 import VueParticles from 'vue-particles'
 Vue.use(VueParticles)
 
 Vue.config.productionTip = false;
 Vue.prototype.$http = request
+Vue.prototype.$eventBus = eventBus
+Vue.prototype.$echarts = echarts
 
 Vue.use(ElementUI)
 
@@ -23,6 +27,7 @@ Vue.filter('first-str',val => {
     return val.slice(0,1)
   }
 })
+
 
 //全局混入
 Vue.mixin(mixin)

@@ -1,13 +1,14 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import { Home } from '../layout'
-
-const originalPush = VueRouter.prototype.push
-VueRouter.prototype.push = function push (location) {
-  return originalPush.call(this, location).catch(err => err)
-}
+import { getStorage } from "../tools/common";
 
 Vue.use(VueRouter);
+
+const originalPush = VueRouter.prototype.push
+VueRouter.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch(err => err)
+}
 
 const routes = [
   {
@@ -21,7 +22,7 @@ const routes = [
         name : 'index',
         component : () => import('../views/index'),
         meta : {
-          menuName : '首页'
+          title : '首页'
         }
       },
       {
@@ -29,14 +30,14 @@ const routes = [
         name : 'user',
         component : () => import('../views/user'),
         meta : {
-          menuName : '用户列表'
+          title : '用户列表'
         }
       },
       {
         path : '/config',
         name : 'config',
         meta : {
-          menuName : '配置'
+          title : '配置'
         },
         component : () => import('../views/config'),
         children: [
@@ -45,14 +46,14 @@ const routes = [
             name : 'setPass',
             component : () => import('../views/setPass'),
             meta : {
-              menuName : '修改密码'
+              title : '修改密码'
             }
           },
           {
             path : '/config/testConfig',
             name : 'testConfig',
             meta : {
-              menuName : '测试配置'
+              title : '测试配置'
             },
             component : () => import('../views/testConfig'),
             children : [
@@ -61,7 +62,7 @@ const routes = [
                 name : 'testConfig1',
                 component : () => import('../views/testConfig1'),
                 meta : {
-                  menuName : '测试配置1'
+                  title : '测试配置1'
                 }
               },
               {
@@ -69,7 +70,7 @@ const routes = [
                 name : 'testConfig2',
                 component : () => import('../views/testConfig2'),
                 meta : {
-                  menuName : '测试配置2'
+                  title : '测试配置2'
                 }
               },
             ]
@@ -81,12 +82,34 @@ const routes = [
   {
     path : '/login',
     name : 'login',
-    component : () => import('../views/login')
+    component : () => import('../views/login'),
+    meta : {
+      title : '登录'
+    }
   }
 ];
 
 const router = new VueRouter({
+  mode : 'history',
   routes
+});
+
+
+router.beforeEach((to,from,next) => {
+  document.title = to.meta.title
+  let userInfo = getStorage('login')
+  // console.log(JSON.stringify(to))  //path /index
+  if (!userInfo && to.path !== '/login') {
+    next('/login')
+  } else {
+    next()
+  }
+})
+router.afterEach(() => {
+  window.scrollTo(0,0);
+})
+router.onError(callback => {
+  console.log('出错了!', callback);
 });
 
 export default router;

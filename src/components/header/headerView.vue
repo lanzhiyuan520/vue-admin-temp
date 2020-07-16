@@ -27,7 +27,7 @@
 </template>
 
 <script>
-  import { getStorage } from '../../tools/common'
+  import { getStorage, removeStroage } from '../../tools/common'
   export default {
     name: "headerView",
     data () {
@@ -43,7 +43,11 @@
     },
     methods : {
       signOut () {
-
+        removeStroage('login')
+        this.$message.success('退出成功')
+        setTimeout(() => {
+          this.$router.replace('/login')
+        },1000)
       }
     }
   };
@@ -63,6 +67,7 @@
             display: flex;
             justify-content: flex-end;
             .user-info {
+                height: 60px;
                 display: flex;
                 align-items: center;
                 .avatar {
@@ -103,6 +108,12 @@
         }
         .el-submenu__icon-arrow {
             display: none;
+        }
+        .el-menu--horizontal>.el-submenu.is-active .el-submenu__title {
+            border-bottom: none;
+        }
+        .el-menu.el-menu--horizontal {
+            border-bottom: none;
         }
     }
 </style>

@@ -4,7 +4,7 @@
             <div class="logo">
                 <img src="../static/img/logo.png" alt="">
             </div>
-            <div class="logo-text">LanAdmin</div>
+            <div class="logo-text" v-if="!isCollapse">LanAdmin</div>
         </div>
         <div class="menu">
             <el-menu
@@ -13,25 +13,26 @@
                     background-color="#fff"
                     text-color="rgb(102, 102, 102)"
                     active-text-color="rgb(255, 100, 40)"
+                    :collapse="isCollapse"
             >
                 <template v-for="item in menuList">
                     <template v-if="item.children && item.children.length > 0">
                         <el-submenu :index="item.path" :key="item.path">
                             <template slot="title">
                                 <i class="el-icon-location"></i>
-                                <span>{{item.meta.menuName}}</span>
+                                <span>{{item.meta.title}}</span>
                             </template>
                             <template v-for="childItem in item.children">
                                 <template v-if="childItem.children && childItem.children.length > 0">
                                     <el-submenu :index="childItem.path" :key="childItem.path">
-                                        <template slot="title">{{childItem.meta.menuName}}</template>
+                                        <template slot="title">{{childItem.meta.title}}</template>
                                         <template v-for="childrenItem in childItem.children">
-                                            <el-menu-item v-if="!childrenItem.meta.isHide" :index="childrenItem.path" :key="childrenItem.path" @click="goRouter(childrenItem.path)">{{childrenItem.meta.menuName}}</el-menu-item>
+                                            <el-menu-item v-if="!childrenItem.meta.isHide" :index="childrenItem.path" :key="childrenItem.path" @click="goRouter(childrenItem.path)">{{childrenItem.meta.title}}</el-menu-item>
                                         </template>
                                     </el-submenu>
                                 </template>
                                 <template v-else>
-                                    <el-menu-item v-if="!childItem.meta.isHide" :index="childItem.path" @click="goRouter(childItem.path)" :key="childItem.path">{{childItem.meta.menuName}}</el-menu-item>
+                                    <el-menu-item v-if="!childItem.meta.isHide" :index="childItem.path" @click="goRouter(childItem.path)" :key="childItem.path">{{childItem.meta.title}}</el-menu-item>
                                 </template>
                             </template>
                         </el-submenu>
@@ -39,7 +40,7 @@
                     <template v-else>
                         <el-menu-item :index="item.path" :key="item.path" @click="goRouter(item.path)" v-if="!item.meta.isHide">
                             <i class="el-icon-menu"></i>
-                            <span slot="title">{{item.meta.menuName}}</span>
+                            <span slot="title">{{item.meta.title}}</span>
                         </el-menu-item>
                     </template>
                 </template>
@@ -49,6 +50,7 @@
 </template>
 
 <script>
+  import { mapState } from 'vuex'
   export default {
     name: "leftMenu",
     data () {
@@ -57,11 +59,16 @@
       }
     },
     computed : {
+      ...mapState(['isCollapse']),
       onRoutes () {
         return this.$route.path
       }
     },
     created () {
+      console.log(this.$store)
+      this.$eventBus.$on('menuController', (flag) => {
+        console.log(flag)
+      })
       let menuList = this.$router.options.routes.filter(item => item.name === 'Home')
       this.menuList = menuList[0].children
     },
@@ -89,7 +96,7 @@
         flex-direction: column;
         .logo-wrap {
             background-color: #fff;
-            width: 180px;
+            /*width: 180px;*/
             height: 60px;
             box-shadow: 0px 2px 5px 0px rgba(230, 224, 224, 0.5);
             display: flex;
@@ -109,6 +116,10 @@
         }
     }
     .menu {
+        .el-menu-vertical-demo {
+            width: 100%;
+            transition: all .2s linear;
+        }
         .el-submenu {
             .el-menu-item {
                 width: 100%;

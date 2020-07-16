@@ -1,13 +1,14 @@
 <template>
   <div class="home">
     <el-container>
-      <el-aside width="180px">
+      <el-aside :width="isCollapse?'64px':'180px'">
         <left-menu></left-menu>
       </el-aside>
       <el-container>
         <el-header>
           <header-view></header-view>
         </el-header>
+        <breadcrumb></breadcrumb>
         <el-main>
           <router-view></router-view>
         </el-main>
@@ -19,6 +20,8 @@
 <script>
   import leftMenu from './leftMenu'
   import headerView from '../components/header/headerView'
+  import breadcrumb from '../components/breadcrumb/breadcrumb'
+  import { mapState } from 'vuex'
   export default {
     name: "Home",
     data () {
@@ -28,7 +31,11 @@
     },
     components: {
       leftMenu,
-      headerView
+      headerView,
+      breadcrumb
+    },
+    computed : {
+      ...mapState(['isCollapse'])
     },
     created () {
 
@@ -48,12 +55,14 @@
   .el-header, .el-footer {
     background-color: #fff;
     color: #333;
-    /*text-align: center;*/
-    /*line-height: 60px;*/
   }
   .home {
     .el-header {
       padding: 0;
+    }
+    .el-aside {
+      transition: all .2s linear;
+      overflow-x: hidden;
     }
   }
 
