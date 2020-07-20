@@ -67,7 +67,7 @@
   }
 
   .el-main {
-    background-color: #E9EEF3;
+    background-color: #F6F7FC;
     color: #333;
   }
 

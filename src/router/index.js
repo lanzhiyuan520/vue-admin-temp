@@ -79,6 +79,33 @@ const routes = [
             ]
           }
         ]
+      },
+      {
+        path : '/error',
+        name : 'error',
+        component : () => import('../views/errorPage/index'),
+        meta : {
+          title : '错误页面',
+          icon : 'icon-cuowu'
+        },
+        children : [
+          {
+            path : '/error/404',
+            name : '404',
+            component : () => import('../views/errorPage/404'),
+            meta : {
+              title : '404',
+            }
+          },
+          {
+            path : '/error/401',
+            name : '401',
+            component : () => import('../views/errorPage/401'),
+            meta : {
+              title : '401',
+            }
+          }
+        ]
       }
     ]
   },
