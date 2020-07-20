@@ -86,6 +86,14 @@ const routes = [
     meta : {
       title : '登录'
     }
+  },
+  {
+    path : '*',
+    name : '404',
+    component : () => import('../views/errorPage/404'),
+    meta : {
+      title : '404'
+    }
   }
 ];
 

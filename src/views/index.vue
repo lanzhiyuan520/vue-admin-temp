@@ -55,11 +55,13 @@
         <el-row :gutter="10">
             <el-col :span="7">
                 <div class="pie-chart">
-                    <div id="my-pie-chart" style="height: 100%;width: 100%"></div>
+                    <pie-chart></pie-chart>
                 </div>
             </el-col>
             <el-col :span="17">
-                <div class="discount-chart"></div>
+                <div class="discount-chart">
+                    <discount-chart></discount-chart>
+                </div>
             </el-col>
         </el-row>
 
@@ -68,54 +70,19 @@
 
 <script>
   // import { getStorage } from '../tools/common'
-  import chartsTheme from './chartsTheme/westeros'
+  import pieChart from '../components/charts/pieChart'
+  import discountChart from '../components/charts/discountChart'
   export default {
     name: "index",
+    components : {
+      pieChart,
+      discountChart
+    },
     mounted () {
-        this.initPieChart()
+
     },
     methods : {
-      initPieChart () {
-        let myChart = this.$echarts.init(document.getElementById('my-pie-chart'),chartsTheme)
-        let option = {
-          title : {
-            text: "用户投资类型",
-            x:'center'
-          },
-          tooltip : {
-            trigger: 'item',
-            formatter: "{a} <br/>{b} : {c} ({d}%)"
-          },
-          legend: {
-            orient: 'vertical',
-            left: 'left',
-            data: ['基金','股票','债券','储蓄','期货']
-          },
-          series : [
-            {
-              name: '访问来源',
-              type: 'pie',
-              radius : '50%',
-              center: ['50%', '60%'],
-              data: [
-                {value:335, name:'基金'},
-                {value:310, name:'股票'},
-                {value:234, name:'债券'},
-                {value:135, name:'储蓄'},
-                {value:1548, name:'期货'}
-              ],
-              itemStyle: {
-                emphasis: {
-                  shadowBlur: 10,
-                  shadowOffsetX: 0,
-                  shadowColor: 'rgba(0, 0, 0, 0.5)'
-                }
-              }
-            }
-          ]
-        }
-        myChart.setOption(option);
-      }
+
     }
   };
 </script>
@@ -128,7 +95,7 @@
         }
     }
     .pie-chart,.discount-chart {
-        height: 320px;
+        height: 400px;
         background-color: #fff;
         border-radius: 6px;
         box-sizing: border-box;
