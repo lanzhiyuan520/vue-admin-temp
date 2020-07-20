@@ -74,7 +74,8 @@
               this.$message.error('密码错误')
             } else {
               let loginInfo = JSON.stringify({
-                username : loginForm.username
+                username : loginForm.username,
+                role : loginForm.username
               })
               localStorage.setItem('login',loginInfo)
               this.$message.success('登录成功')

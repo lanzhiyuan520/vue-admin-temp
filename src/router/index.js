@@ -108,6 +108,26 @@ const routes = [
         ]
       },
       {
+        path : '/auth',
+        name : 'auth',
+        component : () => import('../views/auth/index'),
+        meta : {
+          title : '权限设置',
+          icon : 'icon-quanxianguanli'
+        },
+        children : [
+          {
+            path : '/auth/permissionSettings',
+            name : 'permissionSettings',
+            component : () => import('../views/auth/permissionSettings'),
+            meta : {
+              title : '权限管理',
+              auth : ['admin']
+            },
+          }
+        ]
+      },
+      {
         path : '/plugins',
         name : 'plugins',
         component : () => import('../views/plugins/index'),
@@ -156,12 +176,26 @@ const router = new VueRouter({
 router.beforeEach((to,from,next) => {
   document.title = to.meta.title
   let userInfo = getStorage('login')
-  // console.log(JSON.stringify(to))  //path /index
-  if (!userInfo && to.path !== '/login') {
-    next('/login')
+  let permissionList = to.meta.auth || []
+  if (permissionList.length < 1) {
+    if (!userInfo && to.path !== '/login') {
+      next('/login')
+    } else {
+      next()
+    }
   } else {
-    next()
+    if (!userInfo) {
+      next('/login')
+    } else {
+      let role = JSON.parse(userInfo).role
+      if (permissionList.indexOf(role) !== -1) {
+        next()
+      } else {
+        next('/error/401')
+      }
+    }
   }
+
 })
 router.afterEach(() => {
   window.scrollTo(0,0);
