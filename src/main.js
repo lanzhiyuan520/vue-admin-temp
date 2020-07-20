@@ -8,7 +8,7 @@ import mixin from './mixin'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import eventBus from './tools/eventBus'
-import echarts from 'echarts'
+// import echarts from 'echarts'
 
 import VueParticles from 'vue-particles'
 Vue.use(VueParticles)
@@ -16,7 +16,7 @@ Vue.use(VueParticles)
 Vue.config.productionTip = false;
 Vue.prototype.$http = request
 Vue.prototype.$eventBus = eventBus
-Vue.prototype.$echarts = echarts
+// Vue.prototype.$echarts = echarts
 
 Vue.use(ElementUI)
 

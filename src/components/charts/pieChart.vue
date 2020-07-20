@@ -11,7 +11,7 @@
     },
     methods : {
       initPieChart () {
-        let myChart = this.$echarts.init(this.$refs['myPieChart'],chartsTheme)
+        let myChart = echarts.init(this.$refs['myPieChart'],chartsTheme)
         let option = {
           title : {
             text: "用户投资类型",

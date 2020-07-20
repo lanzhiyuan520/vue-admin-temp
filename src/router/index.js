@@ -106,6 +106,25 @@ const routes = [
             }
           }
         ]
+      },
+      {
+        path : '/plugins',
+        name : 'plugins',
+        component : () => import('../views/plugins/index'),
+        meta : {
+          title : '插件',
+          icon : 'icon-peizhishezhi'
+        },
+        children : [
+          {
+            path : '/plugins/richTextView',
+            name : 'richTextView',
+            component : () => import('../views/plugins/richTextView'),
+            meta : {
+              title : '富文本',
+            }
+          },
+        ]
       }
     ]
   },
@@ -128,7 +147,8 @@ const routes = [
 ];
 
 const router = new VueRouter({
-  mode : 'history',
+  // mode : 'history',
+  // base : '/www/vue-admin/',
   routes
 });
 

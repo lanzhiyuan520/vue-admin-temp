@@ -11,7 +11,7 @@
     },
     methods : {
       initDiscountChart () {
-        let myChart = this.$echarts.init(this.$refs['discountChart'],chartsTheme)
+        let myChart = echarts.init(this.$refs['discountChart'],chartsTheme)
         let option = {
           title: {
             text: ''
