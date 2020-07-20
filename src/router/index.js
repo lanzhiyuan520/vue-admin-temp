@@ -22,7 +22,8 @@ const routes = [
         name : 'index',
         component : () => import('../views/index'),
         meta : {
-          title : '首页'
+          title : '首页',
+          icon : 'icon-shouye1'
         }
       },
       {
@@ -30,14 +31,16 @@ const routes = [
         name : 'user',
         component : () => import('../views/user'),
         meta : {
-          title : '用户列表'
+          title : '用户列表',
+          icon : 'icon-yonghu'
         }
       },
       {
         path : '/config',
         name : 'config',
         meta : {
-          title : '配置'
+          title : '配置',
+          icon : 'icon-peizhishezhi'
         },
         component : () => import('../views/config'),
         children: [
