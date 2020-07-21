@@ -1,23 +1,19 @@
 <template>
-    <div class="user">
+    <div>
+        <div class="export-btn">
+            <el-button type="primary" size="mini" @click="exportExcel">导出</el-button>
+        </div>
         <lan-table
+            :pagination="false"
             :table-cols="tableCols"
             :table-data="tableData"
-            :pagination-option="paginationOption"
-        >
-            <el-table-column align="center" prop="created_at" label="操作" width="240" slot="opt">
-                <template>
-                    <el-button size="mini" type="text" class="table-btn">编辑</el-button>
-                    <el-button size="mini" type="text" class="table-btn">删除</el-button>
-                </template>
-            </el-table-column>
-        </lan-table>
+        ></lan-table>
     </div>
 </template>
 
 <script>
   export default {
-    name: "user",
+    name: "exportExcel",
     data () {
       return {
         tableCols : [
@@ -55,22 +51,7 @@
             slot : 'opt'
           }
         ],
-        tableData : [
-          {
-            id : 1,
-            name : '兰志远',
-            phone : '18310737476',
-            email : 'lanzhiyuan99@126.com',
-            address : '北京市昌平区',
-            age : 18,
-            createTime : '2018-12-01'
-          }
-        ],
-        paginationOption : {
-          total : 100,
-          page : 1,
-          limit : 20
-        }
+        tableData : []
       }
     },
     mounted () {
@@ -91,11 +72,21 @@
           })
         }
         this.tableData = data
+      },
+      exportExcel () {
+        this.$exportExcel({
+          tHeader : ['姓名','手机号','邮箱','地址','年龄','注册时间'],
+          tKey : ['name','phone','email','address','age','createTime'],
+          exportList : this.tableData,
+          excelName : '测试导出'
+        })
       }
     }
   };
 </script>
 
-<style lang="scss">
-
+<style scoped>
+    .export-btn {
+        margin-bottom: 20px;
+    }
 </style>

@@ -144,6 +144,14 @@ const routes = [
               title : '富文本',
             }
           },
+          {
+            path : '/plugins/exportExcel',
+            name : 'exportExcel',
+            component : () => import('../views/plugins/exportExcel'),
+            meta : {
+              title : '导出excel',
+            }
+          },
         ]
       }
     ]
