@@ -1,6 +1,6 @@
 const message = {
   '首页':'index',
-  '用户':'user',
+  '用户':'users',
   '配置':'config',
   '修改密码':'changePassword',
   '测试配置':'testConfig',
@@ -13,5 +13,6 @@ const message = {
   '富文本':'richText',
   '导出excel':'exportExcel',
   '你好':'hello',
+  '拖拽':'drag',
 }
 export default message

@@ -152,6 +152,14 @@ const routes = [
               title : '导出excel',
             }
           },
+          {
+            path : '/plugins/slicksort',
+            name : 'slicksort',
+            component : () => import('../views/plugins/slicksort'),
+            meta : {
+              title : '拖拽',
+            }
+          },
         ]
       }
     ]

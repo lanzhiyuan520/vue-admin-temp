@@ -12,6 +12,7 @@ const message = {
   '插件':'插件',
   '富文本':'富文本',
   '导出excel':'导出excel',
-  '你好':'你好'
+  '你好':'你好',
+  '拖拽':'拖拽'
 }
 export default message

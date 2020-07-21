@@ -4,7 +4,7 @@
             <i class="iconfont icon-zhankai-shouqi"></i>
         </div>
         <el-breadcrumb separator="/">
-            <el-breadcrumb-item  v-for="item in matched" :key="item.path">{{item.meta.title}}</el-breadcrumb-item>
+            <el-breadcrumb-item  v-for="item in matched" :key="item.path">{{$t(item.meta.title)}}</el-breadcrumb-item>
         </el-breadcrumb>
     </div>
 </template>
