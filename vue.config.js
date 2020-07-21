@@ -4,7 +4,11 @@ module.exports = {
   productionSourceMap : false,
   configureWebpack : {
     externals : {
-      "echarts": "echarts"
+      "vue" : "Vue",
+      "echarts": "echarts",
+      'element-ui': 'ELEMENT',
+      "axios" : "axios",
+      "vuex" : "Vuex"
     }
   }
 }

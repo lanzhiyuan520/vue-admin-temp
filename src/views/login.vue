@@ -94,7 +94,7 @@
     #particles-js {
         position: absolute;
         width: 100%;
-        background: url("../static/img/login-bgc.jpg") no-repeat;
+        background: url("http://pic.lanzhiyuan99.cn/image/jpg/admin-bgclogin-bgc.jpg") no-repeat;
         background-size: cover;
     }
     .login-box {

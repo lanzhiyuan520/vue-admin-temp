@@ -1,4 +1,4 @@
-import axios from 'axios'; // 引入axios
+// import axios from 'axios'; // 引入axios
 
 // 创建axios实例
 const instance = axios.create({
