@@ -14,5 +14,10 @@ const message = {
   '导出excel':'exportExcel',
   '你好':'hello',
   '拖拽':'drag',
+  '登录':'login in',
+  '用户名':'username',
+  '密码':'password',
+  '退出':'sign out',
+  '懒加载':'lazy',
 }
 export default message

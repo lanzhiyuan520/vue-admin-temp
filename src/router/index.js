@@ -160,6 +160,14 @@ const routes = [
               title : '拖拽',
             }
           },
+          {
+            path : '/plugins/lazy',
+            name : 'lazy',
+            component : () => import('../views/plugins/lazy'),
+            meta : {
+              title : '懒加载',
+            }
+          },
         ]
       }
     ]

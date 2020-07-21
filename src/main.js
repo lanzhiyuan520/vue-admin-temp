@@ -1,7 +1,7 @@
-import App from "./App.vue";
-import "./registerServiceWorker";
-import router from "./router";
-import store from "./store";
+import App from "./App.vue"
+import "./registerServiceWorker"
+import router from "./router"
+import store from "./store"
 import request from './tools/request'
 import mixin from './mixin'
 import eventBus from './tools/eventBus'
@@ -9,7 +9,13 @@ import packages from './package'
 import exportExcel from './tools/exportExcel'
 import VueParticles from 'vue-particles'
 import i18n from './lang/i18n'
+import VueLazyload from 'vue-lazyload'
 
+
+Vue.use(VueLazyload, {
+  preLoad: 1.3,
+  attempt: 1
+})
 Vue.use(VueParticles)
 Vue.use(packages)
 

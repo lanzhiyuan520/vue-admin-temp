@@ -36,7 +36,7 @@
                             </div>
                         </div>
                     </template>
-                    <el-menu-item index="1-1" @click="signOut">退出</el-menu-item>
+                    <el-menu-item index="1-1" @click="signOut">{{$t('退出')}}</el-menu-item>
                 </el-submenu>
             </el-menu>
 

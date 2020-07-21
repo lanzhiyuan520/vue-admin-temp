@@ -24,13 +24,13 @@
             <div class="login-form">
                 <el-form :model="loginForm" ref="loginForm" :rules="loginRules">
                     <el-form-item prop="username">
-                        <el-input prefix-icon="iconfont icon-denglu" v-model="loginForm.username" placeholder="用户名"></el-input>
+                        <el-input prefix-icon="iconfont icon-denglu" v-model="loginForm.username" :placeholder="$t('用户名')"></el-input>
                     </el-form-item>
                     <el-form-item prop="password">
-                        <el-input prefix-icon="iconfont icon-pass" v-model="loginForm.password" type="password" placeholder="密码"></el-input>
+                        <el-input prefix-icon="iconfont icon-pass" v-model="loginForm.password" type="password" :placeholder="$t('密码')"></el-input>
                     </el-form-item>
                     <el-form-item>
-                        <div class="login-btn" @click="login">登录</div>
+                        <div class="login-btn" @click="login">{{$t('登录')}}</div>
                     </el-form-item>
                     <el-form-item>
                         <div class="tip-text">用户名随意，密码：123456</div>
