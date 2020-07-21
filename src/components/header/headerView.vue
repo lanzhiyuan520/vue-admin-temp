@@ -3,6 +3,24 @@
         <div style="width: 100%"></div>
         <div class="right-box">
             <el-menu
+                    class="el-menu-lang"
+                    mode="horizontal"
+            >
+                <el-submenu index="1" popper-class="lang-item">
+                    <template slot="title">
+                        <div class="lang-img">
+                            <img :src="getLangImg" />
+                        </div>
+                    </template>
+                    <el-menu-item index="1-1" v-for="(langItem,index) in langList" :key="index">
+                        <div class="lang-img-item" @click="changeLang(langItem.lang)">
+                            <img :src="langItem.img" />
+                            <span>{{langItem.text}}</span>
+                        </div>
+                    </el-menu-item>
+                </el-submenu>
+            </el-menu>
+            <el-menu
                 class="el-menu-demo"
                 mode="horizontal"
             >
@@ -10,7 +28,7 @@
                     <template slot="title">
                         <div class="user-info">
                             <div class="user-name">
-                                <span class="hi">你好,</span>
+                                <span class="hi">{{$t('你好')}},</span>
                                 <span class="name">{{getUserName}}</span>
                             </div>
                             <div class="avatar">
@@ -28,17 +46,33 @@
 
 <script>
   import { getStorage, removeStroage } from '../../tools/common'
+  import { mapState } from 'vuex'
   export default {
     name: "headerView",
     data () {
       return {
-
+        langList : [
+          {
+            img : require('../../static/img/cn.png'),
+            text : '中文',
+            lang : 'zh-CN'
+          },
+          {
+            img : require('../../static/img/en.png'),
+            text : 'English',
+            lang : 'en-US'
+          }
+        ]
       }
     },
     computed : {
+      ...mapState(['language']),
       getUserName () {
         let userInfo = JSON.parse(getStorage('login') || '{}')
         return userInfo.username || ''
+      },
+      getLangImg () {
+        return this.langList.filter(langItem => langItem.lang === this.language)[0].img
       }
     },
     methods : {
@@ -48,6 +82,11 @@
         setTimeout(() => {
           this.$router.replace('/login')
         },1000)
+      },
+      changeLang (lang) {
+        localStorage.setItem('lang',lang)
+        this.$store.commit('changeLang',lang)
+        this.$i18n.locale = lang
       }
     }
   };
@@ -116,4 +155,36 @@
             border-bottom: none;
         }
     }
+    .el-menu-lang {
+        margin-right: 20px;
+        .lang-img {
+            img {
+                width: 32px;
+                height: 32px;
+            }
+        }
+    }
+    .lang-img-item {
+        img {
+            width: 32px;
+            height: 32px;
+        }
+        span {
+            font-size: 12px;
+            margin-left: 5px;
+            color: #909399;
+        }
+        span:hover {
+            color: #303133;
+        }
+    }
+    .lang-item {
+        .el-menu--collapse .el-menu .el-submenu, .el-menu--popup {
+            min-width: 100%;
+        }
+        /*.el-menu--horizontal .el-menu .el-menu-item, .el-menu--horizontal .el-menu .el-submenu__title  {*/
+            /*height: 60px;*/
+        /*}*/
+    }
+
 </style>

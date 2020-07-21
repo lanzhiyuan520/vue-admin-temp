@@ -20,19 +20,19 @@
                         <el-submenu :index="item.path" :key="item.path">
                             <template slot="title">
                                 <i :class="['iconfont',item.meta.icon]"></i>
-                                <span class="title">{{item.meta.title}}</span>
+                                <span class="title">{{$t(item.meta.title)}}</span>
                             </template>
                             <template v-for="childItem in item.children">
                                 <template v-if="childItem.children && childItem.children.length > 0">
                                     <el-submenu :index="childItem.path" :key="childItem.path">
-                                        <template slot="title" class="title">{{childItem.meta.title}}</template>
+                                        <template slot="title" class="title">{{$t(childItem.meta.title)}}</template>
                                         <template v-for="childrenItem in childItem.children">
-                                            <el-menu-item v-if="!childrenItem.meta.isHide" :index="childrenItem.path" :key="childrenItem.path" @click="goRouter(childrenItem.path)">{{childrenItem.meta.title}}</el-menu-item>
+                                            <el-menu-item v-if="!childrenItem.meta.isHide" :index="childrenItem.path" :key="childrenItem.path" @click="goRouter(childrenItem.path)">{{$t(childrenItem.meta.title)}}</el-menu-item>
                                         </template>
                                     </el-submenu>
                                 </template>
                                 <template v-else>
-                                    <el-menu-item v-if="!childItem.meta.isHide" :index="childItem.path" @click="goRouter(childItem.path)" :key="childItem.path">{{childItem.meta.title}}</el-menu-item>
+                                    <el-menu-item v-if="!childItem.meta.isHide" :index="childItem.path" @click="goRouter(childItem.path)" :key="childItem.path">{{$t(childItem.meta.title)}}</el-menu-item>
                                 </template>
                             </template>
                         </el-submenu>
@@ -40,7 +40,7 @@
                     <template v-else>
                         <el-menu-item :index="item.path" :key="item.path" @click="goRouter(item.path)" v-if="!item.meta.isHide">
                             <i :class="['iconfont',item.meta.icon]"></i>
-                            <span slot="title" class="title">{{item.meta.title}}</span>
+                            <span slot="title" class="title">{{$t(item.meta.title)}}</span>
                         </el-menu-item>
                     </template>
                 </template>

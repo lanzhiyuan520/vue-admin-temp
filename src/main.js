@@ -7,8 +7,9 @@ import mixin from './mixin'
 import eventBus from './tools/eventBus'
 import packages from './package'
 import exportExcel from './tools/exportExcel'
-
 import VueParticles from 'vue-particles'
+import i18n from './lang/i18n'
+
 Vue.use(VueParticles)
 Vue.use(packages)
 
@@ -31,6 +32,7 @@ Vue.filter('first-str',val => {
 Vue.mixin(mixin)
 new Vue({
   router,
+  i18n,
   store,
   render: h => h(App)
 }).$mount("#app");

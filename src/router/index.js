@@ -31,7 +31,7 @@ const routes = [
         name : 'user',
         component : () => import('../views/user'),
         meta : {
-          title : '用户列表',
+          title : '用户',
           icon : 'icon-yonghu'
         }
       },
