@@ -64,6 +64,9 @@
       transition: all .2s linear;
       overflow-x: hidden;
     }
+    .el-main {
+      flex-basis: 0;
+    }
   }
 
   .el-main {

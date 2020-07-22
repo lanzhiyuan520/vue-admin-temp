@@ -102,6 +102,7 @@
 <style scoped>
     .content {
         height: 100%;
+        min-height: 100%;
         position: relative;
         z-index: 1;
         background-color: #d2e1ec;
