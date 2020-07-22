@@ -19,5 +19,7 @@ const message = {
   '密码':'password',
   '退出':'sign out',
   '懒加载':'lazy',
+  '404':'404',
+  '401':'401'
 }
 export default message

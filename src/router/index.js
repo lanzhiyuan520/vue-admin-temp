@@ -145,6 +145,14 @@ const routes = [
             }
           },
           {
+            path : '/plugins/mavon',
+            name : 'mavon',
+            component : () => import('../views/plugins/mavon'),
+            meta : {
+              title : 'markdown',
+            }
+          },
+          {
             path : '/plugins/exportExcel',
             name : 'exportExcel',
             component : () => import('../views/plugins/exportExcel'),

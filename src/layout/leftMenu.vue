@@ -65,7 +65,6 @@
       }
     },
     created () {
-      console.log(this.$store)
       this.$eventBus.$on('menuController', (flag) => {
         console.log(flag)
       })

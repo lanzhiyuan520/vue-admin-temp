@@ -6,7 +6,7 @@ module.exports = {
     externals : {
       "vue" : "Vue",
       "echarts": "echarts",
-      'element-ui': 'ELEMENT',
+      // 'element-ui': 'ELEMENT',
       "axios" : "axios",
       "vuex" : "Vuex"
     }

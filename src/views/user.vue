@@ -74,6 +74,7 @@
       }
     },
     mounted () {
+      console.log(this.userInfo)
       this.createData()
     },
     methods : {

@@ -1,7 +1,7 @@
 <template>
     <div>
         <rich-text :catch-data="handChange"></rich-text>
-        <div>你的输入是:{{text}}</div>
+        <div v-html="text"></div>
     </div>
 </template>
 

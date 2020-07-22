@@ -1,8 +1,12 @@
+import { getStorage } from '../tools/common'
 const mixin = {
   data () {
     return {
-      msg : 'hello'
+      userInfo : {}
     }
+  },
+  mounted () {
+    this.userInfo = JSON.parse(getStorage('login') || {})
   }
 }
 
