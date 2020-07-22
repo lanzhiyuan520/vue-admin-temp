@@ -2,6 +2,11 @@
     <div class="header-view">
         <div style="width: 100%"></div>
         <div class="right-box">
+            <div class="full-screen">
+                <el-tooltip class="item" effect="dark" :content="getTipText" placement="bottom">
+                    <i :class="['iconfont',getFullScreen]" @click="changeFullScreen"></i>
+                </el-tooltip>
+            </div>
             <el-menu
                     class="el-menu-lang"
                     mode="horizontal"
@@ -62,7 +67,8 @@
             text : 'English',
             lang : 'en-US'
           }
-        ]
+        ],
+        fullScreen : false
       }
     },
     computed : {
@@ -73,9 +79,45 @@
       },
       getLangImg () {
         return this.langList.filter(langItem => langItem.lang === this.language)[0].img
+      },
+      getFullScreen () {
+        return this.fullScreen?'icon-quxiaoquanping':'icon-quanping'
+      },
+      getTipText () {
+        return this.fullScreen?'取消全屏':'全屏'
       }
     },
     methods : {
+      //全屏切换
+      changeFullScreen () {
+        let element = document.documentElement;
+        // 判断是否已经是全屏
+        // 如果是全屏，退出
+        if (this.fullScreen) {
+          if (document.exitFullscreen) {
+            document.exitFullscreen();
+          } else if (document.webkitCancelFullScreen) {
+            document.webkitCancelFullScreen();
+          } else if (document.mozCancelFullScreen) {
+            document.mozCancelFullScreen();
+          } else if (document.msExitFullscreen) {
+            document.msExitFullscreen();
+          }
+        } else {    // 否则，进入全屏
+          if (element.requestFullscreen) {
+            element.requestFullscreen();
+          } else if (element.webkitRequestFullScreen) {
+            element.webkitRequestFullScreen();
+          } else if (element.mozRequestFullScreen) {
+            element.mozRequestFullScreen();
+          } else if (element.msRequestFullscreen) {
+            // IE11
+            element.msRequestFullscreen();
+          }
+        }
+        // 改变当前全屏状态
+        this.fullScreen = !this.fullScreen;
+      },
       signOut () {
         removeStroage('login')
         this.$message.success('退出成功')
@@ -105,6 +147,14 @@
             padding-right: 20px;
             display: flex;
             justify-content: flex-end;
+            .full-screen {
+                display: flex;
+                align-items: center;
+                margin-right: 10px;
+                i{
+                    font-size: 20px;
+                }
+            }
             .user-info {
                 height: 60px;
                 display: flex;
@@ -155,8 +205,8 @@
             border-bottom: none;
         }
     }
-    .el-menu-lang {
-        margin-right: 20px;
+    .el-menu-lang.el-menu {
+        margin-right: 10px;
         .lang-img {
             img {
                 width: 32px;
