@@ -7,11 +7,19 @@
   import chartsTheme from './chartsTheme/westeros'
   export default {
     name: "pieChart",
+    data () {
+      return {
+        isFirst : true
+      }
+    },
     mounted () {
-      this.initPieChart()
       resizeDom(this.$refs['myPieChart'],() => {
-        this.resizeTheChart()
+        if (!this.isFirst) {
+          this.resizeTheChart()
+        }
+        this.isFirst = false
       })
+      this.initPieChart()
     },
     methods : {
       initPieChart () {

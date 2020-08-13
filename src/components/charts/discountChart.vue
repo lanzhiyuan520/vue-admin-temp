@@ -7,11 +7,19 @@
   import chartsTheme from './chartsTheme/westeros'
   export default {
     name: "discountChart",
+    data () {
+      return {
+        isFirst : true
+      }
+    },
     mounted () {
-      this.initDiscountChart()
       resizeDom(this.$refs['discountChart'],() => {
-        this.resizeTheChart()
+        if (!this.isFirst) {
+          this.resizeTheChart()
+        }
+        this.isFirst = false
       })
+      this.initDiscountChart()
     },
     methods : {
       initDiscountChart () {
