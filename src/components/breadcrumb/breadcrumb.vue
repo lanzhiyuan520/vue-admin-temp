@@ -29,7 +29,6 @@
         this.matched =  this.$route.matched.filter(item => item.path)
       },
       operatingMenu () {
-        console.log(this.isCollapse)
         this.$store.commit('changeCollapse',!this.isCollapse)
       }
     },

@@ -3,15 +3,20 @@
 </template>
 
 <script>
+  import { resizeDom } from "../../tools/common";
   import chartsTheme from './chartsTheme/westeros'
   export default {
     name: "pieChart",
     mounted () {
       this.initPieChart()
+      resizeDom(this.$refs['myPieChart'],() => {
+        this.resizeTheChart()
+      })
     },
     methods : {
       initPieChart () {
         let myChart = echarts.init(this.$refs['myPieChart'],chartsTheme)
+        this.myChart = myChart
         let option = {
           title : {
             text: "用户投资类型",
@@ -50,8 +55,11 @@
           ]
         }
         myChart.setOption(option);
+      },
+      resizeTheChart() {
+        this.myChart.resize()
       }
-    }
+    },
   };
 </script>
 

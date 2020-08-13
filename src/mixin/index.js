@@ -6,7 +6,7 @@ const mixin = {
     }
   },
   mounted () {
-    this.userInfo = JSON.parse(getStorage('login') || {})
+    this.userInfo = JSON.parse(getStorage('login') || '{}')
   }
 }
 

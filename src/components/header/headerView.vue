@@ -78,7 +78,9 @@
         return userInfo.username || ''
       },
       getLangImg () {
-        return this.langList.filter(langItem => langItem.lang === this.language)[0].img
+        console.log(this.language)
+        let language = this.language || 'zh-CN'
+        return this.langList.filter(langItem => langItem.lang === language)[0].img
       },
       getFullScreen () {
         return this.fullScreen?'icon-quxiaoquanping':'icon-quanping'

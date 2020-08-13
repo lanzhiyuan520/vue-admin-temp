@@ -3,15 +3,20 @@
 </template>
 
 <script>
+  import { resizeDom } from "../../tools/common";
   import chartsTheme from './chartsTheme/westeros'
   export default {
     name: "discountChart",
     mounted () {
       this.initDiscountChart()
+      resizeDom(this.$refs['discountChart'],() => {
+        this.resizeTheChart()
+      })
     },
     methods : {
       initDiscountChart () {
         let myChart = echarts.init(this.$refs['discountChart'],chartsTheme)
+        this.myChart = myChart
         let option = {
           title: {
             text: ''
@@ -91,6 +96,9 @@
           ]
         }
         myChart.setOption(option)
+      },
+      resizeTheChart() {
+        this.myChart.resize()
       }
     }
   };

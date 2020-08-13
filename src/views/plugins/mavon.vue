@@ -17,7 +17,8 @@
     },
     components : {
       mdEditor
-    }
+    },
+    mounted () {}
   };
 </script>
 
